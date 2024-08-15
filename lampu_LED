@@ -1,5 +1,5 @@
 const int lowestPin = 2;
-const int highestPin = 7;
+const int highestPin = 6;
 int thisPin;
 
 void
