@@ -1,4 +1,4 @@
-const int pwm = 2 ;	//initializing pin 2 as pwm
+const int pwm = 3 ;	//initializing pin 2 as pwm
 const int in_1 = 8 ;
 const int in_2 = 9 ;
 
