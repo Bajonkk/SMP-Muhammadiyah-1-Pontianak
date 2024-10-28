@@ -1,0 +1,56 @@
+int enA = 10;
+int enB = 9;
+int in1 = 5;
+int in2 = 4;
+int in3 = 3;
+int in4 = 2;
+int IRSensor1 = 11;
+int IRSensor2 = 12;
+
+int error;
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Serial Working");
+  pinMode(IRSensor1, INPUT);
+  pinMode(IRSensor2, INPUT);
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+}
+
+void loop() {
+  int sensorStatuskir = digitalRead(IRSensor1);
+  int sensorStatuskan = digitalRead(IRSensor2);
+
+  // ni bagian mtk
+  error = sensorStatuskir*100 + sensorStatuskan*100;
+  //
+  
+  analogWrite(enA, error);
+  analogWrite(enB, error);
+  if (sensorStatuskir == 1 && sensorStatuskan == 1) {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+  } else if (sensorStatuskir == 1 && sensorStatuskan == 0) {
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+  } else if (sensorStatuskir == 0 && sensorStatuskan == 1){
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+  } else {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
+  }
+}
